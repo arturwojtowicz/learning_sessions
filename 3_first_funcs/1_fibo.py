@@ -12,12 +12,24 @@
 # Fibonacci(10) == [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 
 
-def fibo(n: int) -> int: ...
+def memoize(func):
+    store = {}
+    def wrapper(n):
+        if n in store.keys():
+            return store[n]
+        store[n] = func(n)
+        return store[n]
+    return wrapper
 
+@memoize
+def fibo(n): 
+    if n == 0: return 0
+    elif n == 1: return 1
+    else: return fibo(n-2) + fibo(n-1)
 
 from datetime import datetime, timedelta
 
-for i in range(35):
+for i in range(300):
     time_now = datetime.now()
     print(i, fibo(i))
     time_delta = datetime.now() - time_now
@@ -25,6 +37,6 @@ for i in range(35):
 
 
 time_now = datetime.now()
-print([fibo(i) for i in range(35)])
+print([fibo(i) for i in range(300)])
 time_delta = datetime.now() - time_now
 print(time_delta)
