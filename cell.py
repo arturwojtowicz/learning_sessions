@@ -9,7 +9,7 @@ class Cell:
     """
     def __init__(self, color: Colors):
         self.previous_color = None
-        self.color = color
+        self._color = color
 
     @property
     def color(self) -> Colors:
