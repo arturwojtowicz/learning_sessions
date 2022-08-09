@@ -32,11 +32,16 @@ class ColoringGame:
             print(self.board.generate_map())
             while new_color.lower() not in available_colors.keys():
                 new_color = input(f"Round {i}/{self.rounds}.\nSelect new color r (red) / b (blue) / y (yellow) / g (green): ")
-                if new_color.lower() in Colors.colors_mapping() and available_colors[new_color] == previous_color:
+                if new_color.lower() in Colors.colors_mapping() and available_colors[new_color.lower()] == previous_color:
                     new_color = ""
 
             self.board.update_colors(Colors.colors_mapping()[new_color])
             previous_color = Colors.colors_mapping()[new_color]
+
+            if all([cell.color == self.board._cells[0][0].color for row in self.board._cells for cell in row]):
+                print("Yayyy!! You won!!")
+            else:
+                print("Ooooopsie... Maybe try again?")
 
         print(self.board.generate_map())
 

@@ -23,8 +23,8 @@ class Cell:
         """
         Updating previous color that this instance has and current.
         """
-        self.previous_color = self._color
-        self.color = color
+        self.previous_color = self.color
+        self._color = color
 
     @property
     def neighbors(self) -> Dict:
@@ -54,5 +54,5 @@ class Cell:
         """
         self.update_color(color)
         for neighbor in self._neighbors.values():
-            if neighbor != None and self._previous_color != neighbor.color:
+            if neighbor != None and self.previous_color == neighbor.color:
                 neighbor.update(color)

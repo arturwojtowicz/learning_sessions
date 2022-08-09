@@ -20,9 +20,9 @@ class Board:
         """
         Builds a map and creates instances of random colored Cells
         """
-        for _ in range(self.dimension[0]):
+        for _ in range(self.dimension[1]):
             row = []
-            for _ in range(self.dimension[1]):
+            for _ in range(self.dimension[0]):
                 row.append(Cell(color = Colors.random_color()))
             self._cells.append(row)
 
@@ -35,7 +35,7 @@ class Board:
         Returns:
             Cell if found, None otherwise.
         """
-        if 0 <= row < self.dimension[0]:
+        if 0 <= row < self.dimension[1] and 0 <= column < self.dimension[0]:
             return self._cells[row][column]
         return None
 
@@ -45,12 +45,12 @@ class Board:
         """
         return {
             "up": self._find_neighbor(row - 1, column),
-            "down": self._find_neighbor(row - 1, column + 2),
-            "left": self._find_neighbor(row - 2, column - 1),
+            "down": self._find_neighbor(row + 1, column),
+            "left": self._find_neighbor(row, column - 1),
             "right": self._find_neighbor(row, column + 1)
         }
 
-    def define_neighbors(self):
+    def define_neighbors(self):  # Finish atm. Next session from there
         """
         Iterating over Cell instances and updating their neighbors
         """
@@ -76,4 +76,4 @@ class Board:
         """
         Updating first cell, which going to inform others about color change
         """
-        self._cells[1][1].update(color)
+        self._cells[0][0].update(color)

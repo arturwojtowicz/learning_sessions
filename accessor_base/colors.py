@@ -18,7 +18,7 @@ class Colors:
         Returns:
             Colors
         """
-        return random.choice([Colors.BLUE, Colors.GREEN, Colors.YELLOW])
+        return random.choice([Colors.BLUE, Colors.GREEN, Colors.YELLOW, Colors.RED])
 
     @staticmethod
     def colors_mapping() -> Back:
@@ -30,6 +30,8 @@ class Colors:
             "red": Colors.RED,
             "g": Colors.GREEN,
             "green": Colors.GREEN,
+            "b": Colors.BLUE,
+            "blue": Colors.BLUE,
             "y": Colors.YELLOW,
             "yellow": Colors.YELLOW
         }
